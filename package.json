@@ -1,1 +1,29 @@
-
+{
+  "name": "projeto-pessoal",
+  "version": "1.0.0",
+  "description": "Projeto pessoal",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NunoCruz-77/Projeto-pessoal.git"
+  },
+  "keywords": [],
+  "author": "NunoCruz-77",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/NunoCruz-77/Projeto-pessoal/issues"
+  },
+  "homepage": "https://github.com/NunoCruz-77/Projeto-pessoal#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.9.2",
+    "eslint": "^10.4.1",
+    "globals": "^17.6.0",
+    "typescript-eslint": "^8.61.0"
+  }
+}
