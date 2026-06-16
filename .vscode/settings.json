@@ -2,5 +2,10 @@
   "github-enterprise.uri": "https://bmw.ghe.com/",
   "github.copilot.advanced": {
     "authProvider": "github-enterprise"
+  },
+  "chat.autopilot.advanced.enabled": true,
+  "workbench.settings.alwaysShowAdvancedSettings": true,
+  "github.copilot.chat.inlineEdits.xtabProvider.modelConfiguration": {
+
   }
 }
