@@ -4,6 +4,7 @@
   "description": "Projeto pessoal",
   "main": "index.js",
   "scripts": {
+    "test": "playwright test",
     "lint": "eslint ."
   },
   "repository": {
