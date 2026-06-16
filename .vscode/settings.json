@@ -1,0 +1,6 @@
+{
+  "github-enterprise.uri": "https://bmw.ghe.com/",
+  "github.copilot.advanced": {
+    "authProvider": "github-enterprise"
+  }
+}
