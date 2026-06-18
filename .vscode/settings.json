@@ -5,6 +5,7 @@
   },
   "chat.autopilot.advanced.enabled": true,
   "workbench.settings.alwaysShowAdvancedSettings": true,
+  "mise.enable": false,
   "github.copilot.chat.inlineEdits.xtabProvider.modelConfiguration": {
 
   }
