@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "playwright test",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test:positive:ordered": "playwright test tests/positive --workers=1 --project=chromium"
   },
   "repository": {
     "type": "git",
