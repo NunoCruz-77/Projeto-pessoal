@@ -1,12 +1,12 @@
 import { test, expect } from '@playwright/test';
 
-test('pesquisar na documentação', async ({ page }) => {
-  await page.goto('https://playwright.dev');
-  // localizar pelo papel/acessibilidade (locator robusto)
-  await page.getByRole('button', { name: 'Search' }).click();
-  await page.getByPlaceholder('Search docs').fill('locators');
-  await page.getByRole('link', { name: /Locators/ }).first().click();
-  // assertions com auto-waiting (espera sozinho)
-  await expect(page).toHaveURL(/.*locators/);
-  await expect(page.getByRole('heading', { name: 'Locators' })).toBeVisible();
+test('login com sucesso no SauceDemo', async ({ page }) => {
+  await page.goto('https://www.saucedemo.com/');
+
+  await page.locator('[data-test="username"]').fill('standard_user');
+  await page.locator('[data-test="password"]').fill('secret_sauce');
+  await page.locator('[data-test="login-button"]').click();
+
+  await expect(page).toHaveURL(/.*inventory.html/);
+  await expect(page.locator('[data-test="title"]')).toHaveText('Products');
 });
