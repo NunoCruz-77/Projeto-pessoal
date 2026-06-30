@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('[CART][ADD] adiciona Sauce Labs Backpack e incrementa contador @cart @positive', async ({ page }) => {
-  await page.goto('https://www.saucedemo.com/');
+  await page.goto('/');
 
   await page.locator('[data-test="username"]').fill('standard_user');
   await page.locator('[data-test="password"]').fill('secret_sauce');
