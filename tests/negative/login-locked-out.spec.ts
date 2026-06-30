@@ -1,14 +1,14 @@
-import { test, expect } from '@playwright/test';
+import { test } from '../fixtures/auth.fixture';
+import { LoginPage } from '../pages/login.page';
 
-test('[AUTH][LOGIN] bloqueado exibe mensagem de erro @auth @login @negative', async ({ page }) => {
-  await page.goto('/');
+test('[AUTH][LOGIN] bloqueado exibe mensagem de erro @auth @login @negative', async ({ page, credentials }) => {
+  const loginPage = new LoginPage(page);
 
-  await page.locator('[data-test="username"]').fill('locked_out_user');
-  await page.locator('[data-test="password"]').fill('secret_sauce');
-  await page.locator('[data-test="login-button"]').click();
+  await loginPage.goto();
+  await loginPage.loginAs(credentials.lockedOutUser, credentials.password);
 
-  await expect(page.locator('[data-test="error"]')).toHaveText(
+  await loginPage.expectLoginError(
     'Epic sadface: Sorry, this user has been locked out.'
   );
-  await expect(page).toHaveURL('/');
+  await loginPage.expectOnLoginPage();
 });

@@ -1,29 +1,34 @@
-import { test, expect } from '@playwright/test';
+import { test } from '../fixtures/checkout.fixture';
+import { CartPage } from '../pages/cart.page';
+import { CheckoutCompletePage } from '../pages/checkout-complete.page';
+import { CheckoutPage } from '../pages/checkout.page';
+import { InventoryPage } from '../pages/inventory.page';
+import { LoginPage } from '../pages/login.page';
 
-test('[CHECKOUT][CONFIRM] completa checkout e exibe Thank you for your order! @checkout @positive', async ({ page }) => {
-  await page.goto('/');
+test('[CHECKOUT][CONFIRM] completa checkout e exibe Thank you for your order! @checkout @positive', async ({ page, credentials, checkoutCustomer }) => {
+  const loginPage = new LoginPage(page);
+  const inventoryPage = new InventoryPage(page);
+  const cartPage = new CartPage(page);
+  const checkoutPage = new CheckoutPage(page);
+  const checkoutCompletePage = new CheckoutCompletePage(page);
 
-  await page.locator('[data-test="username"]').fill('standard_user');
-  await page.locator('[data-test="password"]').fill('secret_sauce');
-  await page.locator('[data-test="login-button"]').click();
+  await loginPage.goto();
+  await loginPage.loginAs(credentials.standardUser, credentials.password);
 
-  await expect(page).toHaveURL(/.*inventory.html/);
+  await inventoryPage.expectLoaded();
 
-  await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
+  await inventoryPage.addBackpackToCart();
+  await inventoryPage.goToCart();
 
-  await page.locator('[data-test="shopping-cart-link"]').click();
+  await cartPage.expectLoaded();
+  await cartPage.startCheckout();
 
-  await expect(page).toHaveURL(/.*cart.html/);
+  await checkoutPage.fillCustomerInformation(
+    checkoutCustomer.firstName,
+    checkoutCustomer.lastName,
+    checkoutCustomer.postalCode
+  );
+  await checkoutPage.finishOrder();
 
-  await page.locator('[data-test="checkout"]').click();
-
-  await page.locator('[data-test="firstName"]').fill('John');
-  await page.locator('[data-test="lastName"]').fill('Doe');
-  await page.locator('[data-test="postalCode"]').fill('12345');
-
-  await page.locator('[data-test="continue"]').click();
-
-  await page.locator('[data-test="finish"]').click();
-
-  await expect(page.locator('[data-test="complete-header"]')).toHaveText('Thank you for your order!');
+  await checkoutCompletePage.expectOrderCompleted();
 });

@@ -1,12 +1,13 @@
-import { test, expect } from '@playwright/test';
+import { test } from '../fixtures/auth.fixture';
+import { InventoryPage } from '../pages/inventory.page';
+import { LoginPage } from '../pages/login.page';
 
-test('[AUTH][LOGIN] sucesso com credenciais validas @auth @login @positive', async ({ page }) => {
-  await page.goto('/');
+test('[AUTH][LOGIN] sucesso com credenciais validas @auth @login @positive', async ({ page, credentials }) => {
+  const loginPage = new LoginPage(page);
+  const inventoryPage = new InventoryPage(page);
 
-  await page.locator('[data-test="username"]').fill('standard_user');
-  await page.locator('[data-test="password"]').fill('secret_sauce');
-  await page.locator('[data-test="login-button"]').click();
+  await loginPage.goto();
+  await loginPage.loginAs(credentials.standardUser, credentials.password);
 
-  await expect(page).toHaveURL(/.*inventory.html/);
-  await expect(page.locator('[data-test="title"]')).toHaveText('Products');
+  await inventoryPage.expectLoaded();
 });

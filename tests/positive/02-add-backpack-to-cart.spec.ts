@@ -1,17 +1,16 @@
-import { test, expect } from '@playwright/test';
+import { test } from '../fixtures/auth.fixture';
+import { InventoryPage } from '../pages/inventory.page';
+import { LoginPage } from '../pages/login.page';
 
-test('[CART][ADD] adiciona Sauce Labs Backpack e incrementa contador @cart @positive', async ({ page }) => {
-  await page.goto('/');
+test('[CART][ADD] adiciona Sauce Labs Backpack e incrementa contador @cart @positive', async ({ page, credentials }) => {
+  const loginPage = new LoginPage(page);
+  const inventoryPage = new InventoryPage(page);
 
-  await page.locator('[data-test="username"]').fill('standard_user');
-  await page.locator('[data-test="password"]').fill('secret_sauce');
-  await page.locator('[data-test="login-button"]').click();
+  await loginPage.goto();
+  await loginPage.loginAs(credentials.standardUser, credentials.password);
 
-  await expect(page).toHaveURL(/.*inventory.html/);
+  await inventoryPage.expectLoaded();
 
-  await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
-
-  const cartBadge = page.locator('[data-test="shopping-cart-badge"]');
-  await expect(cartBadge).toBeVisible();
-  await expect(cartBadge).toHaveText('1');
+  await inventoryPage.addBackpackToCart();
+  await inventoryPage.expectCartBadgeCount('1');
 });
