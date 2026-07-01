@@ -1,9 +1,9 @@
-import { test } from '../fixtures/checkout.fixture';
-import { CartPage } from '../pages/cart.page';
-import { CheckoutCompletePage } from '../pages/checkout-complete.page';
-import { CheckoutPage } from '../pages/checkout.page';
-import { InventoryPage } from '../pages/inventory.page';
-import { LoginPage } from '../pages/login.page';
+import { test } from '../../fixtures/checkout.fixture';
+import { CartPage } from '../../pages/cart.page';
+import { CheckoutCompletePage } from '../../pages/checkout-complete.page';
+import { CheckoutPage } from '../../pages/checkout.page';
+import { InventoryPage } from '../../pages/inventory.page';
+import { LoginPage } from '../../pages/login.page';
 
 test('[CHECKOUT][CONFIRM] completa checkout e exibe Thank you for your order! @checkout @positive', async ({ page, credentials, checkoutCustomer }) => {
   const loginPage = new LoginPage(page);

@@ -1,6 +1,6 @@
-import { test } from '../fixtures/auth.fixture';
-import { InventoryPage } from '../pages/inventory.page';
-import { LoginPage } from '../pages/login.page';
+import { test } from '../../fixtures/auth.fixture';
+import { InventoryPage } from '../../pages/inventory.page';
+import { LoginPage } from '../../pages/login.page';
 
 test('[CART][ADD] adiciona Sauce Labs Backpack e incrementa contador @cart @positive', async ({ page, credentials }) => {
   const loginPage = new LoginPage(page);

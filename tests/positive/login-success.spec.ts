@@ -1,6 +1,6 @@
-import { test } from '../fixtures/auth.fixture';
-import { InventoryPage } from '../pages/inventory.page';
-import { LoginPage } from '../pages/login.page';
+import { test } from '../../fixtures/auth.fixture';
+import { InventoryPage } from '../../pages/inventory.page';
+import { LoginPage } from '../../pages/login.page';
 
 test('[AUTH][LOGIN] sucesso com credenciais validas @auth @login @positive', async ({ page, credentials }) => {
   const loginPage = new LoginPage(page);
