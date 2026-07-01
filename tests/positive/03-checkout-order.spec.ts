@@ -21,8 +21,10 @@ test('[CHECKOUT][CONFIRM] completa checkout e exibe Thank you for your order! @c
   await inventoryPage.goToCart();
 
   await cartPage.expectLoaded();
+  await cartPage.header.expectCartBadgeCount('1');
   await cartPage.startCheckout();
 
+  await checkoutPage.header.expectCartBadgeCount('1');
   await checkoutPage.fillCustomerInformation(
     checkoutCustomer.firstName,
     checkoutCustomer.lastName,
