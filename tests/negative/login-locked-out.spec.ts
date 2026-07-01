@@ -1,8 +1,9 @@
-import { test } from '../../fixtures/auth.fixture';
-import { LoginPage } from '../../pages/login.page';
+import { test } from '../../fixtures/test';
 
-test('[AUTH][LOGIN] bloqueado exibe mensagem de erro @auth @login @negative', async ({ page, credentials }) => {
-  const loginPage = new LoginPage(page);
+test('[AUTH][LOGIN] bloqueado exibe mensagem de erro @auth @login @negative', async ({
+  credentials,
+  loginPage,
+}) => {
 
   await loginPage.goto();
   await loginPage.loginAs(credentials.lockedOutUser, credentials.password);

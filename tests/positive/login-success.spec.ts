@@ -1,10 +1,10 @@
-import { test } from '../../fixtures/auth.fixture';
-import { InventoryPage } from '../../pages/inventory.page';
-import { LoginPage } from '../../pages/login.page';
+import { test } from '../../fixtures/test';
 
-test('[AUTH][LOGIN] sucesso com credenciais validas @auth @login @positive', async ({ page, credentials }) => {
-  const loginPage = new LoginPage(page);
-  const inventoryPage = new InventoryPage(page);
+test('[AUTH][LOGIN] sucesso com credenciais validas @auth @login @positive', async ({
+  credentials,
+  loginPage,
+  inventoryPage,
+}) => {
 
   await loginPage.goto();
   await loginPage.loginAs(credentials.standardUser, credentials.password);

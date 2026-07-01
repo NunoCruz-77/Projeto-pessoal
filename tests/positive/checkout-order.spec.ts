@@ -1,16 +1,14 @@
-import { test } from '../../fixtures/checkout.fixture';
-import { CartPage } from '../../pages/cart.page';
-import { CheckoutCompletePage } from '../../pages/checkout-complete.page';
-import { CheckoutPage } from '../../pages/checkout.page';
-import { InventoryPage } from '../../pages/inventory.page';
-import { LoginPage } from '../../pages/login.page';
+import { test } from '../../fixtures/test';
 
-test('[CHECKOUT][CONFIRM] completa checkout e exibe Thank you for your order! @checkout @positive', async ({ page, credentials, checkoutCustomer }) => {
-  const loginPage = new LoginPage(page);
-  const inventoryPage = new InventoryPage(page);
-  const cartPage = new CartPage(page);
-  const checkoutPage = new CheckoutPage(page);
-  const checkoutCompletePage = new CheckoutCompletePage(page);
+test('[CHECKOUT][CONFIRM] completa checkout e exibe Thank you for your order! @checkout @positive', async ({
+  credentials,
+  checkoutCustomer,
+  loginPage,
+  inventoryPage,
+  cartPage,
+  checkoutPage,
+  checkoutCompletePage,
+}) => {
 
   await loginPage.goto();
   await loginPage.loginAs(credentials.standardUser, credentials.password);
