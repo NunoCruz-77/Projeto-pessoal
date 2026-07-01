@@ -1,5 +1,5 @@
-import { test } from '../fixtures/auth.fixture';
-import { LoginPage } from '../pages/login.page';
+import { test } from '../../fixtures/auth.fixture';
+import { LoginPage } from '../../pages/login.page';
 
 test('[AUTH][LOGIN] bloqueado exibe mensagem de erro @auth @login @negative', async ({ page, credentials }) => {
   const loginPage = new LoginPage(page);
