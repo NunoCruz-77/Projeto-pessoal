@@ -1,4 +1,4 @@
-import { expect, type Page } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { HeaderComponent } from './components/header.component';
 
 export class CartPage {
@@ -12,11 +12,15 @@ export class CartPage {
   }
 
   async expectLoaded(): Promise<void> {
-    await expect(this.page).toHaveURL(/.*cart.html/);
-    await this._header.expectVisible();
+    await test.step('Validar carregamento da pagina do carrinho', async () => {
+      await expect(this.page).toHaveURL(/.*cart.html/);
+      await this._header.expectVisible();
+    });
   }
 
   async startCheckout(): Promise<void> {
-    await this.checkoutButton.click();
+    await test.step('Iniciar checkout', async () => {
+      await this.checkoutButton.click();
+    });
   }
 }

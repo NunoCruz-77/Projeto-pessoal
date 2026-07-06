@@ -1,4 +1,4 @@
-import { expect, type Page } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { HeaderComponent } from './components/header.component';
 
 export class InventoryPage {
@@ -13,20 +13,28 @@ export class InventoryPage {
   }
 
   async expectLoaded(): Promise<void> {
-    await expect(this.page).toHaveURL(/.*inventory.html/);
-    await expect(this.title).toHaveText('Products');
-    await this._header.expectVisible();
+    await test.step('Validar carregamento da pagina de produtos', async () => {
+      await expect(this.page).toHaveURL(/.*inventory.html/);
+      await expect(this.title).toHaveText('Products');
+      await this._header.expectVisible();
+    });
   }
 
   async addBackpackToCart(): Promise<void> {
-    await this.addBackpackButton.click();
+    await test.step('Adicionar mochila ao carrinho', async () => {
+      await this.addBackpackButton.click();
+    });
   }
 
   async expectCartBadgeCount(count: string): Promise<void> {
-    await this._header.expectCartBadgeCount(count);
+    await test.step(`Validar contador do carrinho com o valor ${count}`, async () => {
+      await this._header.expectCartBadgeCount(count);
+    });
   }
 
   async goToCart(): Promise<void> {
-    await this._header.openCart();
+    await test.step('Abrir carrinho', async () => {
+      await this._header.openCart();
+    });
   }
 }

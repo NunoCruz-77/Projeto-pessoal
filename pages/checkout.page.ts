@@ -1,4 +1,4 @@
-import { type Page } from '@playwright/test';
+import { test, type Page } from '@playwright/test';
 import { HeaderComponent } from './components/header.component';
 
 export class CheckoutPage {
@@ -16,15 +16,19 @@ export class CheckoutPage {
   }
 
   async fillCustomerInformation(firstName: string, lastName: string, postalCode: string): Promise<void> {
-    await this._header.expectVisible();
-    await this.firstNameInput.fill(firstName);
-    await this.lastNameInput.fill(lastName);
-    await this.postalCodeInput.fill(postalCode);
+    await test.step('Preencher informacao do cliente', async () => {
+      await this._header.expectVisible();
+      await this.firstNameInput.fill(firstName);
+      await this.lastNameInput.fill(lastName);
+      await this.postalCodeInput.fill(postalCode);
+    });
   }
 
   async finishOrder(): Promise<void> {
-    await this._header.expectVisible();
-    await this.continueButton.click();
-    await this.finishButton.click();
+    await test.step('Concluir encomenda', async () => {
+      await this._header.expectVisible();
+      await this.continueButton.click();
+      await this.finishButton.click();
+    });
   }
 }

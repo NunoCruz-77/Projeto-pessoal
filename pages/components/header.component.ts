@@ -1,4 +1,4 @@
-import { expect, type Page } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 
 export class HeaderComponent {
   constructor(private readonly page: Page) {}
@@ -8,16 +8,22 @@ export class HeaderComponent {
   private readonly cartBadge = this.page.locator('[data-test="shopping-cart-badge"]');
 
   async expectVisible(): Promise<void> {
-    await expect(this.container).toBeVisible();
-    await expect(this.cartLink).toBeVisible();
+    await test.step('Validar cabecalho visivel', async () => {
+      await expect(this.container).toBeVisible();
+      await expect(this.cartLink).toBeVisible();
+    });
   }
 
   async openCart(): Promise<void> {
-    await this.cartLink.click();
+    await test.step('Abrir carrinho pelo cabecalho', async () => {
+      await this.cartLink.click();
+    });
   }
 
   async expectCartBadgeCount(count: string): Promise<void> {
-    await expect(this.cartBadge).toBeVisible();
-    await expect(this.cartBadge).toHaveText(count);
+    await test.step(`Validar badge do carrinho com o valor ${count}`, async () => {
+      await expect(this.cartBadge).toBeVisible();
+      await expect(this.cartBadge).toHaveText(count);
+    });
   }
 }
