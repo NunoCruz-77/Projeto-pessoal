@@ -11,6 +11,6 @@ test('[CART][ADD] adiciona Sauce Labs Backpack e incrementa contador @cart @posi
 
   await inventoryPage.expectLoaded();
 
-  await inventoryPage.addBackpackToCart();
+  await inventoryPage.addToCart('sauce-labs-backpack');
   await inventoryPage.expectCartBadgeCount('1');
 });

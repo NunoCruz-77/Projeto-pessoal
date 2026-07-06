@@ -15,7 +15,7 @@ test('[CHECKOUT][CONFIRM] completa checkout e exibe Thank you for your order! @c
 
   await inventoryPage.expectLoaded();
 
-  await inventoryPage.addBackpackToCart();
+  await inventoryPage.addToCart('sauce-labs-backpack');
   await inventoryPage.goToCart();
 
   await cartPage.expectLoaded();

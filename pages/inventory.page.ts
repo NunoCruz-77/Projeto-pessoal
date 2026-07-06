@@ -4,12 +4,10 @@ import { HeaderComponent } from './components/header.component';
 export class InventoryPage {
   private readonly _header: HeaderComponent;
   private readonly title: Locator;
-  private readonly addBackpackButton: Locator;
 
   constructor(private readonly page: Page) {
     this._header = new HeaderComponent(this.page);
     this.title = this.page.getByTestId('title');
-    this.addBackpackButton = this.page.getByTestId('add-to-cart-sauce-labs-backpack');
   }
 
   get header(): HeaderComponent {
@@ -24,10 +22,14 @@ export class InventoryPage {
     });
   }
 
-  async addBackpackToCart(): Promise<void> {
-    await test.step('Adicionar mochila ao carrinho', async () => {
-      await this.addBackpackButton.click();
+  async addToCart(productId: string): Promise<void> {
+    await test.step(`Adicionar produto ${productId} ao carrinho`, async () => {
+      await this.page.getByTestId(`add-to-cart-${productId}`).click();
     });
+  }
+
+  async addBackpackToCart(): Promise<void> {
+    await this.addToCart('sauce-labs-backpack');
   }
 
   async expectCartBadgeCount(count: string): Promise<void> {
