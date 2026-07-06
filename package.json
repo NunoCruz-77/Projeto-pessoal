@@ -6,7 +6,7 @@
   "scripts": {
     "test": "playwright test",
     "lint": "eslint .",
-    "test:positive:ordered": "playwright test tests/positive --workers=1 --project=chromium"
+    "test:positive:ordered": "playwright test tests/positive --project=chromium"
   },
   "repository": {
     "type": "git",
