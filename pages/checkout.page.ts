@@ -5,11 +5,11 @@ export class CheckoutPage {
   constructor(private readonly page: Page) {}
 
   private readonly _header = new HeaderComponent(this.page);
-  private readonly firstNameInput = this.page.locator('[data-test="firstName"]');
-  private readonly lastNameInput = this.page.locator('[data-test="lastName"]');
-  private readonly postalCodeInput = this.page.locator('[data-test="postalCode"]');
-  private readonly continueButton = this.page.locator('[data-test="continue"]');
-  private readonly finishButton = this.page.locator('[data-test="finish"]');
+  private readonly firstNameInput = this.page.getByTestId('firstName');
+  private readonly lastNameInput = this.page.getByTestId('lastName');
+  private readonly postalCodeInput = this.page.getByTestId('postalCode');
+  private readonly continueButton = this.page.getByTestId('continue');
+  private readonly finishButton = this.page.getByTestId('finish');
 
   get header(): HeaderComponent {
     return this._header;

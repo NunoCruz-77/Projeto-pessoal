@@ -5,8 +5,8 @@ export class InventoryPage {
   constructor(private readonly page: Page) {}
 
   private readonly _header = new HeaderComponent(this.page);
-  private readonly title = this.page.locator('[data-test="title"]');
-  private readonly addBackpackButton = this.page.locator('[data-test="add-to-cart-sauce-labs-backpack"]');
+  private readonly title = this.page.getByTestId('title');
+  private readonly addBackpackButton = this.page.getByTestId('add-to-cart-sauce-labs-backpack');
 
   get header(): HeaderComponent {
     return this._header;

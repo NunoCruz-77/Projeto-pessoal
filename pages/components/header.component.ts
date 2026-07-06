@@ -3,9 +3,9 @@ import { expect, test, type Page } from '@playwright/test';
 export class HeaderComponent {
   constructor(private readonly page: Page) {}
 
-  private readonly container = this.page.locator('[data-test="header-container"]');
-  private readonly cartLink = this.page.locator('[data-test="shopping-cart-link"]');
-  private readonly cartBadge = this.page.locator('[data-test="shopping-cart-badge"]');
+  private readonly container = this.page.getByTestId('header-container');
+  private readonly cartLink = this.page.getByTestId('shopping-cart-link');
+  private readonly cartBadge = this.page.getByTestId('shopping-cart-badge');
 
   async expectVisible(): Promise<void> {
     await test.step('Validar cabecalho visivel', async () => {

@@ -3,10 +3,10 @@ import { expect, test, type Page } from '@playwright/test';
 export class LoginPage {
   constructor(private readonly page: Page) {}
 
-  private readonly usernameInput = this.page.locator('[data-test="username"]');
-  private readonly passwordInput = this.page.locator('[data-test="password"]');
-  private readonly loginButton = this.page.locator('[data-test="login-button"]');
-  private readonly errorMessage = this.page.locator('[data-test="error"]');
+  private readonly usernameInput = this.page.getByTestId('username');
+  private readonly passwordInput = this.page.getByTestId('password');
+  private readonly loginButton = this.page.getByTestId('login-button');
+  private readonly errorMessage = this.page.getByTestId('error');
 
   async goto(): Promise<void> {
     await test.step('Abrir pagina de login', async () => {

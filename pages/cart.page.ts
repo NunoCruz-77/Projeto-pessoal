@@ -5,7 +5,7 @@ export class CartPage {
   constructor(private readonly page: Page) {}
 
   private readonly _header = new HeaderComponent(this.page);
-  private readonly checkoutButton = this.page.locator('[data-test="checkout"]');
+  private readonly checkoutButton = this.page.getByTestId('checkout');
 
   get header(): HeaderComponent {
     return this._header;
