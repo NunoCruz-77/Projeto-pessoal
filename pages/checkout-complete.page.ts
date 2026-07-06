@@ -1,9 +1,11 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 
 export class CheckoutCompletePage {
-  constructor(private readonly page: Page) {}
+  private readonly completeHeader: Locator;
 
-  private readonly completeHeader = this.page.getByTestId('complete-header');
+  constructor(private readonly page: Page) {
+    this.completeHeader = this.page.getByTestId('complete-header');
+  }
 
   async expectOrderCompleted(): Promise<void> {
     await test.step('Validar confirmacao de encomenda', async () => {

@@ -1,12 +1,16 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 import { HeaderComponent } from './components/header.component';
 
 export class InventoryPage {
-  constructor(private readonly page: Page) {}
+  private readonly _header: HeaderComponent;
+  private readonly title: Locator;
+  private readonly addBackpackButton: Locator;
 
-  private readonly _header = new HeaderComponent(this.page);
-  private readonly title = this.page.getByTestId('title');
-  private readonly addBackpackButton = this.page.getByTestId('add-to-cart-sauce-labs-backpack');
+  constructor(private readonly page: Page) {
+    this._header = new HeaderComponent(this.page);
+    this.title = this.page.getByTestId('title');
+    this.addBackpackButton = this.page.getByTestId('add-to-cart-sauce-labs-backpack');
+  }
 
   get header(): HeaderComponent {
     return this._header;

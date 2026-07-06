@@ -1,16 +1,24 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 import { HeaderComponent } from './components/header.component';
 
 export class CheckoutPage {
-  constructor(private readonly page: Page) {}
+  private readonly _header: HeaderComponent;
+  private readonly firstNameInput: Locator;
+  private readonly lastNameInput: Locator;
+  private readonly postalCodeInput: Locator;
+  private readonly continueButton: Locator;
+  private readonly finishButton: Locator;
+  private readonly summaryContainer: Locator;
 
-  private readonly _header = new HeaderComponent(this.page);
-  private readonly firstNameInput = this.page.getByTestId('firstName');
-  private readonly lastNameInput = this.page.getByTestId('lastName');
-  private readonly postalCodeInput = this.page.getByTestId('postalCode');
-  private readonly continueButton = this.page.getByTestId('continue');
-  private readonly finishButton = this.page.getByTestId('finish');
-  private readonly summaryContainer = this.page.getByTestId('checkout-summary-container');
+  constructor(private readonly page: Page) {
+    this._header = new HeaderComponent(this.page);
+    this.firstNameInput = this.page.getByTestId('firstName');
+    this.lastNameInput = this.page.getByTestId('lastName');
+    this.postalCodeInput = this.page.getByTestId('postalCode');
+    this.continueButton = this.page.getByTestId('continue');
+    this.finishButton = this.page.getByTestId('finish');
+    this.summaryContainer = this.page.getByTestId('checkout-summary-container');
+  }
 
   get header(): HeaderComponent {
     return this._header;
