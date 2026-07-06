@@ -22,7 +22,7 @@
   "homepage": "https://github.com/NunoCruz-77/Projeto-pessoal#readme",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@playwright/test": "^1.60.0",
+    "@playwright/test": "^1.61.1",
     "@types/node": "^25.9.4",
     "eslint": "^10.0.0",
     "globals": "^17.6.0",
