@@ -22,12 +22,15 @@ test('[CHECKOUT][CONFIRM] completa checkout e exibe Thank you for your order! @c
   await cartPage.header.expectCartBadgeCount('1');
   await cartPage.startCheckout();
 
+  await checkoutPage.header.expectVisible();
   await checkoutPage.header.expectCartBadgeCount('1');
   await checkoutPage.fillCustomerInformation(
     checkoutCustomer.firstName,
     checkoutCustomer.lastName,
     checkoutCustomer.postalCode
   );
+  await checkoutPage.continueToOverview();
+  await checkoutPage.expectOverviewLoaded();
   await checkoutPage.finishOrder();
 
   await checkoutCompletePage.expectOrderCompleted();
