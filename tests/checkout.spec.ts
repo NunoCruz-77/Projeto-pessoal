@@ -1,7 +1,7 @@
 import { test } from '../fixtures/test';
 
 test.describe('[CHECKOUT] cenarios de checkout @checkout', () => {
-  test('[CHECKOUT][CART] problem_user adiciona 2 produtos e valida itens no carrinho @checkout @negative', async ({
+  test('[CHECKOUT][CART] problem_user adiciona 2 produtos e valida itens no carrinho @checkout @negative @regression', async ({
     credentials,
     loginPage,
     inventoryPage,
@@ -25,7 +25,7 @@ test.describe('[CHECKOUT] cenarios de checkout @checkout', () => {
     await inventoryPage.expectRemoveButtonVisible('sauce-labs-fleece-jacket');
   });
 
-  test('[CHECKOUT][CART] error_user valida bug de Last Name sem persistencia no checkout @checkout @negative', async ({
+  test('[CHECKOUT][CART] error_user valida bug de Last Name sem persistencia no checkout @checkout @negative @regression', async ({
     credentials,
     checkoutCustomer,
     loginPage,

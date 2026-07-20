@@ -40,6 +40,12 @@ export class CheckoutPage {
     });
   }
 
+  async fillLastName(lastName: string): Promise<void> {
+    await test.step('Preencher apenas o campo Last Name', async () => {
+      await this.lastNameInput.fill(lastName);
+    });
+  }
+
   async fillPostalCode(postalCode: string): Promise<void> {
     await test.step('Preencher apenas o campo Postal Code', async () => {
       await this.postalCodeInput.fill(postalCode);

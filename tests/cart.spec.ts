@@ -10,7 +10,7 @@ const ALL_INVENTORY_PRODUCT_IDS = [
 ];
 
 test.describe('[CART] cenarios do carrinho @cart', () => {
-  test('[CART][ADD] adicionar os 6 produtos e validar badge com 6 @cart @positive', async ({
+  test('[CART][ADD] adicionar os 6 produtos e validar badge com 6 @cart @positive @smoke @regression', async ({
     credentials,
     loginPage,
     inventoryPage,
@@ -26,7 +26,7 @@ test.describe('[CART] cenarios do carrinho @cart', () => {
     await inventoryPage.expectCartBadgeCount('6');
   });
 
-  test('[CART][REMOVE] remover 6 produtos um a um e decrementar badge @cart @positive', async ({
+  test('[CART][REMOVE] remover 6 produtos um a um e decrementar badge @cart @positive @regression', async ({
     credentials,
     loginPage,
     inventoryPage,
