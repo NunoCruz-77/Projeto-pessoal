@@ -71,6 +71,50 @@ Este projeto usa Playwright com duas ideias principais para manter os testes lim
 - Abrir ultimo relatorio HTML:
 	npx playwright show-report
 
+## Como correr no Docker
+
+- Build da imagem:
+	docker build -t projeto-pessoal-playwright .
+
+- Correr a suite dentro do container:
+	docker run --rm projeto-pessoal-playwright
+
+- Correr apenas os testes positivos:
+	docker run --rm projeto-pessoal-playwright npx playwright test tests/positive
+
+- Correr apenas um spec:
+	docker run --rm projeto-pessoal-playwright npx playwright test tests/positive/checkout-order.spec.ts
+
+## Como correr com Docker Compose
+
+- Correr a suite com um comando:
+	docker compose up --build --abort-on-container-exit --exit-code-from playwright
+
+- Ver os relatórios gerados no host:
+	- playwright-report/
+	- test-results/
+
+- Correr um spec especifico:
+	docker compose --profile spec run --rm playwright-spec
+
+- Correr em modo headed:
+	docker compose --profile headed run --rm playwright-headed
+
+## CI e relatórios
+
+- A suíte corre em `push` e `pull_request` via GitHub Actions.
+- O HTML report fica guardado como artifact da CI.
+- Os traces ficam guardados quando a execução falha.
+- Se quiser reproduzir localmente com Docker:
+	- `docker compose up --build --abort-on-container-exit --exit-code-from playwright`
+	- `docker run --rm projeto-pessoal-playwright`
+
+## Qualidade de código
+
+- Validar lint localmente:
+	`npm run lint`
+- O lint está configurado para focar apenas no código deste projeto e ignorar diretórios gerados externamente (ex.: `.github/sentinel`).
+
 ## Padrao recomendado para novos specs
 
 - Importar test de fixtures/test.ts para receber POMs injetados

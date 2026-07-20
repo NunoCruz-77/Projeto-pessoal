@@ -1,0 +1,26 @@
+services:
+  playwright:
+    build:
+      context: .
+    image: projeto-pessoal-playwright
+    volumes:
+      - ./playwright-report:/app/playwright-report
+      - ./test-results:/app/test-results
+    command: npx playwright test
+
+  playwright-spec:
+    image: projeto-pessoal-playwright
+    profiles: ["spec"]
+    volumes:
+      - ./playwright-report:/app/playwright-report
+      - ./test-results:/app/test-results
+    command: npx playwright test tests/positive/checkout-order.spec.ts
+
+  playwright-headed:
+    image: projeto-pessoal-playwright
+    profiles: ["headed"]
+    entrypoint: ["sh", "-lc"]
+    volumes:
+      - ./playwright-report:/app/playwright-report
+      - ./test-results:/app/test-results
+    command: Xvfb :99 -screen 0 1280x720x24 >/tmp/xvfb.log 2>&1 & export DISPLAY=:99; npx playwright test --headed
