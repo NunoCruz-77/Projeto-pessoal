@@ -1,4 +1,4 @@
-import { test } from '../../fixtures/test';
+import { test } from '../fixtures/test';
 
 test('[CHECKOUT][CONFIRM] completa checkout e exibe Thank you for your order! @checkout @positive', async ({
   credentials,
@@ -9,7 +9,6 @@ test('[CHECKOUT][CONFIRM] completa checkout e exibe Thank you for your order! @c
   checkoutPage,
   checkoutCompletePage,
 }) => {
-
   await loginPage.goto();
   await loginPage.loginAs(credentials.standardUser, credentials.password);
 

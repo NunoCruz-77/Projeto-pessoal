@@ -14,7 +14,7 @@ services:
     volumes:
       - ./playwright-report:/app/playwright-report
       - ./test-results:/app/test-results
-    command: npx playwright test tests/positive/checkout-order.spec.ts
+    command: npx playwright test tests/checkout-order.spec.ts
 
   playwright-headed:
     image: projeto-pessoal-playwright

@@ -25,12 +25,9 @@ Este projeto usa Playwright com duas ideias principais para manter os testes lim
 - data/
 	- users.ts
 - tests/
-	- negative/
-		- login-locked-out.spec.ts
-	- positive/
-		- login-success.spec.ts
-		- add-backpack-to-cart.spec.ts
-		- checkout-order.spec.ts
+	- auth.spec.ts
+	- add-backpack-to-cart.spec.ts
+	- checkout-order.spec.ts
 - playwright.config.ts
 
 ## Como os testes estao organizados
@@ -49,7 +46,7 @@ Este projeto usa Playwright com duas ideias principais para manter os testes lim
 
 4. tests/
 - Specs com convencao {feature}.spec.ts
-- Flows positivos e negativos separados por pasta
+- Organizacao por fluxo funcional (auth, cart, checkout)
 
 ## Como correr os testes
 
@@ -57,13 +54,13 @@ Este projeto usa Playwright com duas ideias principais para manter os testes lim
 	npx playwright test
 
 - Rodar apenas testes positivos:
-	npx playwright test tests/positive
+	npx playwright test --grep @positive
 
 - Rodar apenas testes negativos:
-	npx playwright test tests/negative
+	npx playwright test --grep @negative
 
 - Rodar um spec especifico:
-	npx playwright test tests/positive/checkout-order.spec.ts
+	npx playwright test tests/checkout-order.spec.ts
 
 - Rodar em UI mode:
 	npx playwright test --ui
@@ -80,10 +77,10 @@ Este projeto usa Playwright com duas ideias principais para manter os testes lim
 	docker run --rm projeto-pessoal-playwright
 
 - Correr apenas os testes positivos:
-	docker run --rm projeto-pessoal-playwright npx playwright test tests/positive
+	docker run --rm projeto-pessoal-playwright npx playwright test --grep @positive
 
 - Correr apenas um spec:
-	docker run --rm projeto-pessoal-playwright npx playwright test tests/positive/checkout-order.spec.ts
+	docker run --rm projeto-pessoal-playwright npx playwright test tests/checkout-order.spec.ts
 
 ## Como correr com Docker Compose
 
@@ -139,5 +136,5 @@ Este projeto usa Playwright com duas ideias principais para manter os testes lim
 	- Repetir apenas falhas: npx playwright test --last-failed
 
 - Queres depurar um cenario especifico
-	- Correr 1 ficheiro em headed: npx playwright test tests/positive/checkout-order.spec.ts --headed
+	- Correr 1 ficheiro em headed: npx playwright test tests/checkout-order.spec.ts --headed
 	- Correr em UI mode: npx playwright test --ui

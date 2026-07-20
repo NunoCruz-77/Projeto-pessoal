@@ -43,4 +43,10 @@ export class InventoryPage {
       await this._header.openCart();
     });
   }
+
+  async logout(): Promise<void> {
+    await test.step('Executar logout', async () => {
+      await this._header.logout();
+    });
+  }
 }
