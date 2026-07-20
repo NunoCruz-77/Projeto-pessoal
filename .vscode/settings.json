@@ -8,5 +8,14 @@
   "mise.enable": false,
   "github.copilot.chat.inlineEdits.xtabProvider.modelConfiguration": {
 
+  },
+  "files.watcherExclude": {
+    "**/.github/sentinel/**": true
+  },
+  "search.exclude": {
+    "**/.github/sentinel/**": true
+  },
+  "files.exclude": {
+    "**/.github/sentinel": false
   }
 }
