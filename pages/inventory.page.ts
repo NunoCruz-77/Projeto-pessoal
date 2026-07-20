@@ -4,10 +4,14 @@ import { HeaderComponent } from './components/header.component';
 export class InventoryPage {
   private readonly _header: HeaderComponent;
   private readonly title: Locator;
+  private readonly sortSelect: Locator;
+  private readonly productNames: Locator;
 
   constructor(private readonly page: Page) {
     this._header = new HeaderComponent(this.page);
     this.title = this.page.getByTestId('title');
+    this.sortSelect = this.page.getByTestId('product-sort-container');
+    this.productNames = this.page.getByTestId('inventory-item-name');
   }
 
   get header(): HeaderComponent {
@@ -28,6 +32,12 @@ export class InventoryPage {
     });
   }
 
+  async removeFromCart(productId: string): Promise<void> {
+    await test.step(`Remover produto ${productId} do carrinho`, async () => {
+      await this.page.getByTestId(`remove-${productId}`).click();
+    });
+  }
+
   async addBackpackToCart(): Promise<void> {
     await this.addToCart('sauce-labs-backpack');
   }
@@ -38,9 +48,33 @@ export class InventoryPage {
     });
   }
 
+  async expectCartBadgeHidden(): Promise<void> {
+    await test.step('Validar que o contador do carrinho nao e exibido', async () => {
+      await this._header.expectCartBadgeHidden();
+    });
+  }
+
   async goToCart(): Promise<void> {
     await test.step('Abrir carrinho', async () => {
       await this._header.openCart();
+    });
+  }
+
+  async sortProductsByNameAsc(): Promise<void> {
+    await test.step('Ordenar produtos de A a Z', async () => {
+      await this.sortSelect.selectOption('az');
+    });
+  }
+
+  async expectProductsSortedByNameAsc(): Promise<void> {
+    await test.step('Validar produtos ordenados alfabeticamente de A a Z', async () => {
+      const productNames = (await this.productNames.allTextContents()).map((name) =>
+        name.trim()
+      );
+      expect(productNames.length).toBeGreaterThan(1);
+
+      const expectedOrder = [...productNames].sort((a, b) => a.localeCompare(b));
+      expect(productNames).toEqual(expectedOrder);
     });
   }
 

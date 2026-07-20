@@ -35,6 +35,12 @@ export class HeaderComponent {
     });
   }
 
+  async expectCartBadgeHidden(): Promise<void> {
+    await test.step('Validar que o badge do carrinho nao e exibido', async () => {
+      await expect(this.cartBadge).toBeHidden();
+    });
+  }
+
   async logout(): Promise<void> {
     await test.step('Terminar sessao pelo menu lateral', async () => {
       await this.menuButton.click();
