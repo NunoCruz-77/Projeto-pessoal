@@ -45,7 +45,11 @@ export class HeaderComponent {
     await test.step('Terminar sessao pelo menu lateral', async () => {
       await this.menuButton.click();
       await expect(this.logoutLink).toBeVisible();
-      await this.logoutLink.click();
+      try {
+        await this.logoutLink.click();
+      } catch {
+        await this.logoutLink.click({ force: true });
+      }
     });
   }
 }

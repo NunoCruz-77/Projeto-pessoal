@@ -1,7 +1,7 @@
 import { expect, test } from '../fixtures/test';
 
 test.describe('[PURCHASE] cenarios de compra @purchase', () => {
-  test('[PURCHASE][E2E] visual_user valida desalinhamento do Add to cart @purchase @regression', async ({
+  test('[PURCHASE][VISUAL][ALIGNMENT] visual_user valida desalinhamento do Add to cart @purchase @regression', async ({
     credentials,
     loginPage,
     inventoryPage,
@@ -24,7 +24,7 @@ test.describe('[PURCHASE] cenarios de compra @purchase', () => {
     expect(horizontalOffset).toBeGreaterThan(20);
   });
 
-  test('[PURCHASE][E2E] visual_user valida erros de checkout e conclui compra @purchase @smoke @regression', async ({
+  test('[PURCHASE][CHECKOUT][VALIDATION] visual_user valida erros de checkout e conclui compra @purchase @smoke @regression', async ({
     credentials,
     checkoutCustomer,
     loginPage,
