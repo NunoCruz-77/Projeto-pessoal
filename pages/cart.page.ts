@@ -4,10 +4,14 @@ import { HeaderComponent } from './components/header.component';
 export class CartPage {
   private readonly _header: HeaderComponent;
   private readonly checkoutButton: Locator;
+  private readonly continueShoppingButton: Locator;
+  private readonly cartItemNames: Locator;
 
   constructor(private readonly page: Page) {
     this._header = new HeaderComponent(this.page);
     this.checkoutButton = this.page.getByTestId('checkout');
+    this.continueShoppingButton = this.page.getByTestId('continue-shopping');
+    this.cartItemNames = this.page.getByTestId('inventory-item-name');
   }
 
   get header(): HeaderComponent {
@@ -36,6 +40,20 @@ export class CartPage {
   async expectCartBadgeHidden(): Promise<void> {
     await test.step('Validar que o contador do carrinho nao e exibido', async () => {
       await this._header.expectCartBadgeHidden();
+    });
+  }
+
+  async expectProductNamesInCart(expectedNames: string[]): Promise<void> {
+    await test.step('Validar produtos esperados na lista do carrinho', async () => {
+      for (const productName of expectedNames) {
+        await expect(this.cartItemNames.filter({ hasText: productName })).toHaveCount(1);
+      }
+    });
+  }
+
+  async continueShopping(): Promise<void> {
+    await test.step('Voltar para inventory pelo botao Continue Shopping', async () => {
+      await this.continueShoppingButton.click();
     });
   }
 

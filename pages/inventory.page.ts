@@ -38,6 +38,12 @@ export class InventoryPage {
     });
   }
 
+  async expectRemoveButtonVisible(productId: string): Promise<void> {
+    await test.step(`Validar que o botao Remove do produto ${productId} esta visivel`, async () => {
+      await expect(this.page.getByTestId(`remove-${productId}`)).toBeVisible();
+    });
+  }
+
   async addBackpackToCart(): Promise<void> {
     await this.addToCart('sauce-labs-backpack');
   }
