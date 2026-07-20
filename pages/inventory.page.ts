@@ -60,9 +60,10 @@ export class InventoryPage {
     });
   }
 
-  async sortProductsByNameAsc(): Promise<void> {
-    await test.step('Ordenar produtos de A a Z', async () => {
-      await this.sortSelect.selectOption('az');
+  async sortProductsByNameDesc(): Promise<void> {
+    await test.step('Ordenar produtos de Z a A', async () => {
+      await this.sortSelect.click();
+      await this.sortSelect.selectOption({ index: 1 });
     });
   }
 
@@ -74,6 +75,18 @@ export class InventoryPage {
       expect(productNames.length).toBeGreaterThan(1);
 
       const expectedOrder = [...productNames].sort((a, b) => a.localeCompare(b));
+      expect(productNames).toEqual(expectedOrder);
+    });
+  }
+
+  async expectProductsSortedByNameDesc(): Promise<void> {
+    await test.step('Validar produtos ordenados alfabeticamente de Z a A', async () => {
+      const productNames = (await this.productNames.allTextContents()).map((name) =>
+        name.trim()
+      );
+      expect(productNames.length).toBeGreaterThan(1);
+
+      const expectedOrder = [...productNames].sort((a, b) => b.localeCompare(a));
       expect(productNames).toEqual(expectedOrder);
     });
   }

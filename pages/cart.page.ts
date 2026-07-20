@@ -21,6 +21,24 @@ export class CartPage {
     });
   }
 
+  async removeFromCart(productId: string): Promise<void> {
+    await test.step(`Remover produto ${productId} do carrinho`, async () => {
+      await this.page.getByTestId(`remove-${productId}`).click();
+    });
+  }
+
+  async expectCartBadgeCount(count: string): Promise<void> {
+    await test.step(`Validar contador do carrinho com o valor ${count}`, async () => {
+      await this._header.expectCartBadgeCount(count);
+    });
+  }
+
+  async expectCartBadgeHidden(): Promise<void> {
+    await test.step('Validar que o contador do carrinho nao e exibido', async () => {
+      await this._header.expectCartBadgeHidden();
+    });
+  }
+
   async startCheckout(): Promise<void> {
     await test.step('Iniciar checkout', async () => {
       await this.checkoutButton.click();

@@ -22,6 +22,7 @@ test.describe('[INVENTORY] cenarios da pagina de produtos @inventory', () => {
     await loginPage.loginAs(credentials.standardUser, credentials.password);
 
     await inventoryPage.expectLoaded();
+    await inventoryPage.sortProductsByNameDesc();
     await inventoryPage.goToCart();
 
     await cartPage.expectLoaded();
@@ -43,7 +44,7 @@ test.describe('[INVENTORY] cenarios da pagina de produtos @inventory', () => {
     await inventoryPage.expectCartBadgeCount('2');
   });
 
-  test('[INVENTORY][SORT] ordenar produtos de A a Z @inventory @positive', async ({
+  test('[INVENTORY][SORT] ordenar produtos de Z a A @inventory @positive', async ({
     credentials,
     loginPage,
     inventoryPage,
@@ -52,8 +53,8 @@ test.describe('[INVENTORY] cenarios da pagina de produtos @inventory', () => {
     await loginPage.loginAs(credentials.standardUser, credentials.password);
 
     await inventoryPage.expectLoaded();
-    await inventoryPage.sortProductsByNameAsc();
-    await inventoryPage.expectProductsSortedByNameAsc();
+    await inventoryPage.sortProductsByNameDesc();
+    await inventoryPage.expectProductsSortedByNameDesc();
   });
 
   test('[INVENTORY][CART][REMOVE] remover todos os itens e ocultar contador @inventory @positive', async ({
