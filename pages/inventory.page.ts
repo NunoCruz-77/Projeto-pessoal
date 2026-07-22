@@ -44,10 +44,6 @@ export class InventoryPage {
     });
   }
 
-  async addBackpackToCart(): Promise<void> {
-    await this.addToCart('sauce-labs-backpack');
-  }
-
   async expectCartBadgeCount(count: string): Promise<void> {
     await test.step(`Validar contador do carrinho com o valor ${count}`, async () => {
       await this._header.expectCartBadgeCount(count);
@@ -70,6 +66,13 @@ export class InventoryPage {
     await test.step('Ordenar produtos de Z a A', async () => {
       await this.sortSelect.click();
       await this.sortSelect.selectOption({ index: 1 });
+    });
+  }
+
+  async sortProductsByNameAsc(): Promise<void> {
+    await test.step('Ordenar produtos de A a Z', async () => {
+      await this.sortSelect.click();
+      await this.sortSelect.selectOption({ index: 0 });
     });
   }
 

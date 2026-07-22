@@ -57,6 +57,19 @@ test.describe('[INVENTORY] cenarios da pagina de produtos @inventory', () => {
     await inventoryPage.expectProductsSortedByNameDesc();
   });
 
+  test('[INVENTORY][SORT] ordenar produtos de A a Z @inventory @positive @regression', async ({
+    credentials,
+    loginPage,
+    inventoryPage,
+  }) => {
+    await loginPage.goto();
+    await loginPage.loginAs(credentials.standardUser, credentials.password);
+
+    await inventoryPage.expectLoaded();
+    await inventoryPage.sortProductsByNameAsc();
+    await inventoryPage.expectProductsSortedByNameAsc();
+  });
+
   test('[INVENTORY][CART][REMOVE] remover todos os itens e ocultar contador @inventory @positive @regression', async ({
     credentials,
     loginPage,
