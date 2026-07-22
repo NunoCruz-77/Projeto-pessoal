@@ -4,7 +4,7 @@ import tsEslint from 'typescript-eslint';
 
 export default [
   {
-    ignores: ['node_modules', 'dist', 'build', '.git', '.github/sentinel'],
+    ignores: ['node_modules', 'dist', 'build', '.git'],
   },
   {
     files: ['**/*.js'],
