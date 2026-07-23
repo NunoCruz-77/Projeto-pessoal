@@ -12,7 +12,7 @@ export class HeaderComponent {
     this.cartLink = this.page.getByTestId('shopping-cart-link');
     this.cartBadge = this.page.getByTestId('shopping-cart-badge');
     this.menuButton = this.page.locator('#react-burger-menu-btn');
-    this.logoutLink = this.page.locator('#logout_sidebar_link');
+    this.logoutLink = this.page.getByTestId('logout-sidebar-link');
   }
 
   async expectVisible(): Promise<void> {
