@@ -98,12 +98,6 @@ export class CheckoutPage {
   async finishOrder(): Promise<void> {
     await test.step('Finalizar encomenda no resumo', async () => {
       await this.finishButton.click();
-
-      // Some flaky user profiles can require a second click before redirecting.
-      if (!/checkout-complete\.html/.test(this.page.url())) {
-        await this.finishButton.click();
-      }
-
       await expect(this.page).toHaveURL(/.*checkout-complete.html/);
     });
   }
